@@ -39,11 +39,7 @@ Gamma rate = most common bit in the corresponding position of all
 
 function checkNumber(b, a) {
     let x = arrayValues[b].substring(a, a + 1)
-    if (x == '1') {
-        ones += 1
-    } else {
-        zeros += 1
-    }
+    x == '1' ? ones += 1 : zeros += 1
 }
 
 var arrayValues = ['00100', '11110', '10110', '10111', '10101', '01111', '00111', '11100', '10000', '11001', '00010', '01010']
@@ -54,11 +50,11 @@ var epsilonRate = ''
 for (let a = 0; a < arrayValues[0].length; a++) {
     var zeros = 0
     var ones = 0
-     for (let b = 0; b < 12; b++) {
+    for (let b = 0; b < 12; b++) {
         checkNumber(b, a)
-     }
+    }
 
-     if (ones > zeros) {
+    if (ones > zeros) {
         gammaRate += '1'
         epsilonRate += '0'
     } else {
