@@ -68,8 +68,7 @@ function createGrid() {
             baseGrid[i] = h;
         }
     }
-
-    return  baseGrid 
+    return baseGrid
 }
 
 
@@ -90,19 +89,228 @@ for (let i = 0; i < amountPlayers; i++) {
 
 //Populate players grid
 // for (ajax in players) {}
-
-for (let player = 0; player < 1; player++) {
+for (let player = 0; player < amountPlayers; player++) {
     for (let row = 0; row < gridSize; row++) {
         for (let collum = 0; collum < gridSize; collum++) {
-            players[player][row][collum] = completeGrid[Math.floor(Math.random() * 100)]
+            players[player][row][collum] = takeRandomNumber()
         }
     }
 }
 
+function takeRandomNumber() {
+    const number = completeGrid[Math.floor(Math.random() * 100)]
+    return number
+}
+
+
+players = [
+    [
+        ['93', '81', '81', '45', '54'],
+        ['64', '91', '16', '90', '91'],
+        ['75', '05', '69', '73', '41'],
+        ['79', '10', '68', '74', '50'],
+        ['08', '97', '14', '57', '60']
+    ],
+    [
+        ['44', '88', '93', '69', '66'],
+        ['81', '97', '08', '02', '52'],
+        ['63', '31', '26', '93', '47'],
+        ['36', '02', '09', '29', '79'],
+        ['79', '78', '69', '74', '35']
+    ],
+    [
+        ['22', '78', '41', '02', '26'],
+        ['58', '54', '66', '36', '91'],
+        ['79', '36', '31', '31', '81'],
+        ['35', '31', '08', '02', '45'],
+        ['54', '58', '34', '63', '56']
+    ],
+    [
+        ['41', '54', '07', '42', '56'],
+        ['65', '44', '58', '86', '84'],
+        ['75', '19', '47', '65', '90'],
+        ['26', '56', '35', '45', '79'],
+        ['42', '47', '97', '47', '86']
+    ],
+    [
+        ['48', '45', '78', '69', '87'],
+        ['41', '74', '81', '36', '86'],
+        ['05', '41', '72', '36', '91'],
+        ['88', '35', '54', '26', '34'],
+        ['05', '24', '24', '68', '93']
+    ]
+]
+
 //Check if winner
+var winner = false
+let drawedNumber = []
+let playersMatch = []
 
-console.log(players[0])
+while (!winner) {
+    let tempDrawedNumber = takeRandomNumber()
+
+    if (!drawedNumber.includes(tempDrawedNumber)) { //Avoid same number //todo create a validation. Unique takeRandomNumber
+        drawedNumber.push(tempDrawedNumber)
+
+        for (let player = 0; player < amountPlayers; player++) {
+            for (let row = 0; row < gridSize; row++) {
+                for (let collum = 0; collum < gridSize; collum++) {
+                    if (players[player][row][collum] == '93' /*tempDrawedNumber*/) {               //Search occurrence on tables
+                        /* console.log(`Player: ${player}  Row: ${row}  Collum: ${collum}`)
+                        console.log(players[player]) */
+                        winner = true
+
+                        playersMatch.push({ 'player': player, 'collum': collum })                //todo Descobrir como fazer a validação de ganhador. Está criando os grids, players e sorteando os números.
+
+                    }
+                }
+            }
+        }
+    }
+}
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* function printGrid(baseGrid, gridSize) {
+    console.log('\n===============')
+    for (var i = 0; i < gridSize; i++) {
+        for (var j = 0; j < gridSize; j++) {
+            process.stdout.write(baseGrid[i][j] + ' ');
+        }
+        process.stdout.write('|\n');
+    }
+    console.log('===============\n')
+}
+
+function createGrid(value) {
+    var gridSize = value
+    var baseGrid = new Array(gridSize);
+
+    // Create Array
+    for (var i = 0; i < gridSize; i++) {
+        baseGrid[i] = new Array(gridSize);
+    }
+
+    // Populate Array
+    for (var i = 0; i < gridSize; i++) {
+        for (var j = 0; j < gridSize; j++) {
+            const h = Math.floor(Math.random() * 100).toString();
+
+            if (h < 10) {
+                baseGrid[i][j] = '0' + h;
+            } else {
+                baseGrid[i][j] = h;
+            }
+        }
+    }
+    printGrid(baseGrid, gridSize)
+    return {baseGrid, gridSize}
+}
+
+
+
+
+createGrid(5) */
